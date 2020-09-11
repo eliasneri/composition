@@ -61,7 +61,7 @@ public class HourContract {
 	public String toString() {
 		return "Date= " + sdf.format(date) 
 				+ ", valuePerHour= " + valuePerHour 
-				+ ", hours=" + hours + "]";
+				+ ", hours=" + hours;
 				
 	}
 	

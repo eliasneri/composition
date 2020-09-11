@@ -120,7 +120,7 @@ public class Worker {
 								   + String.format("%n")
 								   + "Nº of Contract(s) : " +contracts.size() 
 								   + String.format("%n")
-								   + getContracts();
+								   + getContracts().toString();
 								   
 		
 		return info;
