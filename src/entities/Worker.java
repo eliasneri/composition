@@ -109,4 +109,20 @@ public class Worker {
 		
 		return sum;
 	}
+	
+	public String consultContracts() {
+		String info="";
+					
+		
+			info = "Worker Name: " + name.toUpperCase() + " - "  
+								   + department.getName().toUpperCase()
+								   + " - " + level
+								   + String.format("%n")
+								   + "Nº of Contract(s) : " +contracts.size() 
+								   + String.format("%n")
+								   + getContracts();
+								   
+		
+		return info;
+	}
 }

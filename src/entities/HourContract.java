@@ -1,5 +1,6 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class HourContract {
@@ -8,6 +9,7 @@ public class HourContract {
 	private Double valuePerHour;
 	private Integer hours;
 	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
 	
 	public HourContract(){
 		
@@ -53,5 +55,15 @@ public class HourContract {
 	public double totalValue() {
 		return valuePerHour * hours;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Date= " + sdf.format(date) 
+				+ ", valuePerHour= " + valuePerHour 
+				+ ", hours=" + hours + "]";
+				
+	}
+	
 	
 }

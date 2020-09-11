@@ -19,50 +19,72 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		System.out.print("Enter department's name: ");
-		String departmentName = sc.nextLine();
-		System.out.println("Enter Worker Data:");
 		
-		System.out.print("Name: ");
-		String workerName = sc.nextLine();
+			System.out.print("Enter department's name: ");
+			String departmentName = sc.nextLine();
+			System.out.println("Enter Worker Data:");
 		
-		System.out.print("Level: ");
-		String workerLevel = sc.nextLine();
+			System.out.print("Name: ");
+			String workerName = sc.nextLine();
 		
-		System.out.print("Base Salary: ");
-		double baseSalary = sc.nextDouble();
+			System.out.print("Level: ");
+			String workerLevel = sc.nextLine().toUpperCase();
 		
-		// com esses dados já pode instaciar o trabalhador, classe Worker
-		// Instancia uma nova classe Worker, passando o nome e 
-		// enviando um objeto Enums, informando o nome, porisso o uso do valueOf
-		// envia o baseSalary para o objeto Worker
-		// cria um novo objeto Department, enviando o departamento q foi digitado.
+			System.out.print("Base Salary: ");
+			double baseSalary = sc.nextDouble();
 		
-		Worker worker = new Worker(workerName, Workerlevel.valueOf(workerLevel), baseSalary, new Department(departmentName));
+			// com esses dados já pode instaciar o trabalhador, classe Worker
+			// Instancia uma nova classe Worker, passando o nome e 
+			// enviando um objeto Enums, informando o nome, porisso o uso do valueOf
+			// envia o baseSalary para o objeto Worker
+			// cria um novo objeto Department, enviando o departamento q foi digitado.
 		
-		System.out.print("How many contracts to this worker? : ");
-		int n = sc.nextInt();
+			Worker worker = new Worker(workerName, Workerlevel.valueOf(workerLevel), baseSalary, new Department(departmentName));
 		
-		for (int i=1; i<=n; i++) {
-			System.out.println("Enter contract #" + i + " data:");
-			System.out.print("Date (DD/MM/YYYY): ");
-			Date contractDate = sdf.parse(sc.next());
-			System.out.print("Value per hour: ");
-			double valuePerhour = sc.nextDouble();
-			System.out.print("Duration (hours): ");
-			int hours = sc.nextInt();
+			System.out.print("How many contracts to this worker? : ");
+			int n = sc.nextInt();
+		
+			for (int i=1; i<=n; i++) {
+				System.out.println("Enter contract #" + i + " data:");
+				System.out.print("Date (DD/MM/YYYY): ");
+				Date contractDate = sdf.parse(sc.next());
+				System.out.print("Value per hour: ");
+				double valuePerhour = sc.nextDouble();
+				System.out.print("Duration (hours): ");
+				int hours = sc.nextInt();
+				System.out.println();
 			
-			//Com esses Dados já pode iniciar o Objeto HourContract!
-			// Instanciação
+				//Com esses Dados já pode iniciar o Objeto HourContract!
+				// Instanciação
 			
-			HourContract contract = new HourContract(contractDate, valuePerhour, hours);
-			//adicionando esse contrato para a lista de contratos do trabalhador!
-			worker.addContract(contract);
-		}
-
-		sc.close();
+				HourContract contract = new HourContract(contractDate, valuePerhour, hours);
+				//adicionando esse contrato para a lista de contratos do trabalhador!
+				worker.addContract(contract);
+			}
+	
+				
+				sc.nextLine();
+				System.out.println();
+				System.out.print("Enter month and year to calculate income (MM/YYYY): ");
+				String monthAndYear = sc.nextLine();
 		
+				int month = Integer.parseInt(monthAndYear.substring(0,2));
+				int year = Integer.parseInt(monthAndYear.substring(3));
+		
+				System.out.println("Name: " + worker.getName());
 
+				//ATENÇÃO PARA A COMPOSIÇÃO... OBJETO TRABALHADOR, + OBJETO DEPARTMENT, E BUSCO O NAME DESSE OBJETO(DEPARTMENT)
+				System.out.println("Department: " + worker.getDepartment().getName());
+		
+				System.out.println("Income for: " + monthAndYear + ": " + String.format("%.2f", worker.income(year, month)));
+		
+						
+				System.out.println();
+				System.out.println("Contracts:");
+				System.out.println(worker.consultContracts());
+		
+		
+		sc.close();	
 	}
 
 }
